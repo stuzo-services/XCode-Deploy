@@ -17,7 +17,11 @@ inputs:
   workspace_name: 
     description: 'Name of the workspace.'
     required: true
-    default: '\\'
+    default: ''
+  project_folder: 
+    description: 'Folder with a project'
+    required: true
+    default: ''
   scheme: 
     description: 'Leave blank and Action will search for default scheme.'
     required: false
@@ -115,9 +119,11 @@ runs:
     - name: Resolve Package Dependencies
       if: inputs.resolve-package-dependencies == 'true'
       shell: bash
+      env:
+        PROJECT_FOLDER: ${{ inputs.project_folder }}
       run: |
         echo "[XCode-Deploy]: Resolving Package Dependencies..."
-        xcodebuild -resolvePackageDependencies -clonedSourcePackagesDirPath .
+        xcodebuild -resolvePackageDependencies -clonedSourcePackagesDirPath .$PROJECT_FOLDER
     - name: Setup Scheme
       shell: bash
       run: |
