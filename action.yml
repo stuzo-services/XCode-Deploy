@@ -135,6 +135,7 @@ runs:
     - name: Import Certificates
       uses: apple-actions/import-codesign-certs@v2
       with:
+        create-keychain: false
         p12-file-base64: ${{ inputs.distribution-certificate-p12 }}
         p12-password: ${{ inputs.distribution-certificate-password }}
     - name: Install App Store Profile
