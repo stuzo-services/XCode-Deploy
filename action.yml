@@ -117,7 +117,7 @@ runs:
       run: |
         cd $PROJECT_FOLDER
         echo "[XCode-Deploy]: Resolving Package Dependencies..."
-        xcodebuild -project ${{ env.PROJECT_NAME }}.xcodeproj -resolvePackageDependencies -clonedSourcePackagesDirPath .
+        xcodebuild -project ${{ env.PROJECT_NAME }}.xcodeproj -resolvePackageDependencies #-clonedSourcePackagesDirPath .
     - name: Setup Scheme
       shell: bash
       run: |
