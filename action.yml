@@ -101,7 +101,7 @@ runs:
         else filetype_parameter="project" && file_to_build="`ls -A | grep -i \\.xcodeproj\$`"; fi
         file_to_build=`echo $file_to_build | awk '{$1=$1;print}'`
         echo "TYPE=$filetype_parameter" >> $GITHUB_ENV
-        echo "FILE_TO_BUILD=$file_to_build" >> $GITHUB_ENV
+        echo "FILE_TO_BUILD=$PROJECT_FOLDER/$file_to_build" >> $GITHUB_ENV
         echo "PROJECT_NAME=$(echo "$file_to_build" | cut -f 1 -d '.')" >> $GITHUB_ENV
     - name: Setup Pods
       if: inputs.install-pods == 'true'
