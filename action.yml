@@ -152,6 +152,9 @@ runs:
           echo "[XCode-Deploy]: Updating Build Number to commit depth..."
           count=`git rev-list --count HEAD`
           xcrun agvtool new-version -all $count
+    - name: Print contents of mobile provision project_folder
+      run: |
+        ls ~/Library/MobileDevice/Provisioning\ Profiles
     - name: Build and Archive
       uses: sersoft-gmbh/xcodebuild-action@v2
       with:
