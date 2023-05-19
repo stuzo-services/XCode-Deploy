@@ -58,10 +58,7 @@ inputs:
     required: true
   app-store-provisioning-profile:
     description: 'base64 representation of the provisioning profile.'
-    required: true
-  bundle-id:
-    description: 'Bundle ID of the application, used to download provision profiles'
-    requred: true
+    required: true    
   auth-key-id:
     description: 'App Store Connect API Auth Key ID.'
     required: true
@@ -140,16 +137,10 @@ runs:
       with:
         p12-file-base64: ${{ inputs.distribution-certificate-p12 }}
         p12-password: ${{ inputs.distribution-certificate-password }}
-    - uses: Apple-Actions/download-provisioning-profiles@v1
+    - name: Install App Store Profile
+      uses: akiojin/install-provisioning-profile-github-action@v1.0
       with:
-        bundle-id: ${{ inputs.bundle-id }}
-        issuer-id: ${{ inputs.auth-key-issuer-id }}
-        api-key-id: ${{ inputs.auth-key-issuer-id }}
-        api-private-key: ${{ inputs.auth-key-issuer-id }}
-    #- name: Install App Store Profile
-    #  uses: akiojin/install-provisioning-profile-github-action@v1.0
-    #  with:
-    #    base64: ${{ inputs.app-store-provisioning-profile }}
+        base64: ${{ inputs.app-store-provisioning-profile }}
     - name: Select Xcode
       uses: maxim-lobanov/setup-xcode@v1.4.1
       with:
