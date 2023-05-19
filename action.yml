@@ -153,6 +153,7 @@ runs:
           count=`git rev-list --count HEAD`
           xcrun agvtool new-version -all $count
     - name: Print contents of mobile provision project_folder
+      shell: bash
       run: |
         ls ~/Library/MobileDevice/Provisioning\ Profiles
     - name: Build and Archive
