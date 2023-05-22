@@ -186,6 +186,10 @@ runs:
         -exportPath ${{ github.workspace }} \          -authenticationKeyIssuerID ${{ inputs.auth-key-issuer-id }} \
         -authenticationKeyID ${{ inputs.auth-key-id }} \
         -authenticationKeyPath ${{ github.workspace }}/private_keys/AuthKey_${{ inputs.auth-key-id }}.p8 \
+    - name: List generated files
+      shell: bash
+      run: |
+        ls ${{ github.workspace }}
     - name: Upload to App Store Connect
       shell: bash
       run: |
