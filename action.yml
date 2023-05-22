@@ -199,6 +199,5 @@ runs:
     - name: Cleanup 
       shell: bash
       run: |
-        echo "[XCode-Deploy]: Removing Keychain and private_keys folder..."
-        security delete-keychain codesign.keychain
+        echo "[XCode-Deploy]: Removing private_keys folder..."
         rm  -rf ${{ github.workspace }}/private_keys || true
