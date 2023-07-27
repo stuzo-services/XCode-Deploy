@@ -193,7 +193,7 @@ runs:
     - name: Upload artifacts to Github Actions storage
       uses: actions/upload-artifact@v3
         with:
-        name: buildArtifacts
+          name: buildArtifacts
           path: |
             DaveAndBusters.ipa
             DaveAndBusters.xcarchive
