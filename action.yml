@@ -190,6 +190,17 @@ runs:
       shell: bash
       run: |
         ls ${{ github.workspace }}
+    - name: Upload artifacts to Github Actions storage
+      uses: actions/upload-artifact@v3
+        with:
+        name: buildArtifacts
+          path: |
+            DaveAndBusters.ipa
+            DaveAndBusters.xcarchive
+            DistributionSummary.plist
+            ExportOptions.plist
+            Packaging.log
+            build
     - name: Upload to App Store Connect
       shell: bash
       run: |
