@@ -201,7 +201,7 @@ runs:
           ExportOptions.plist
           Packaging.log
           build
-          !build/DerivedData
+          !build/derivedData
     - name: Upload to App Store Connect
       shell: bash
       run: |
