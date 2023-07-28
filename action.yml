@@ -197,11 +197,7 @@ runs:
         path: |
           DaveAndBusters.ipa
           DaveAndBusters.xcarchive
-          DistributionSummary.plist
-          ExportOptions.plist
           Packaging.log
-          build
-          !build/derivedData
     - name: Upload to App Store Connect
       shell: bash
       run: |
