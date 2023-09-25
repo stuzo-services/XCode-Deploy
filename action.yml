@@ -195,7 +195,6 @@ runs:
       with:
         name: buildArtifacts
         path: |
-          DaveAndBusters.ipa
           DaveAndBusters.xcarchive
           Packaging.log
     - name: Upload to App Store Connect
