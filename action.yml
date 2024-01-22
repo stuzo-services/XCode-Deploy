@@ -68,6 +68,9 @@ inputs:
   auth-key-p8:
     description: 'base64 representation of the App Store Connect AuthKey.'
     required: true
+  retention-days:
+    description: 'Period for artifacts storage. Artifacts will be kept during this time, in days'
+    required: true
 
 runs: 
   using: 'composite'
@@ -198,7 +201,7 @@ runs:
           DaveAndBusters.xcarchive
           DaveAndBusters.ipa
           Packaging.log
-        retention-days: 7
+        retention-days: ${{ inputs.retention-days }}
     - name: Upload to App Store Connect
       shell: bash
       run: |
