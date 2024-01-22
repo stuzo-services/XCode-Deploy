@@ -171,7 +171,6 @@ runs:
         derived-data-path: build/derivedData
         destination: generic/platform=iOS
         configuration: ${{ inputs.configuration }}
-        use-xcpretty: false
     - name: Get App Store Connect API Key 
       uses: timheuer/base64-to-file@v1.2.4
       with:
