@@ -191,13 +191,14 @@ runs:
       run: |
         ls ${{ github.workspace }}
     - name: Upload artifacts to Github Actions storage
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: buildArtifacts
         path: |
           DaveAndBusters.xcarchive
           DaveAndBusters.ipa
           Packaging.log
+        retention-days: 7
     - name: Upload to App Store Connect
       shell: bash
       run: |
