@@ -85,8 +85,9 @@ runs:
         SCHEME: ${{ inputs.scheme }}
         CONFIGURATION: ${{ inputs.configuration }}
         PATH_TO_EXPORT_OPTIONS: ${{ inputs.path-to-export-options }}
+        KEYCHAIN: ${{ inputs.keychain_name }}
       run: |
-        echo "${{ input.keychain_name }}"
+        echo "${{ env.KEYCHAIN }}"
         echo "[XCode-Deploy]: Checking Input for invalid characters..."
         if [[ "$SCHEME" == ${SCHEME//[^a-zA-Z0-9_\.- ]/} ]] && \
         [[ "$CONFIGURATION" == ${CONFIGURATION//[^a-zA-Z0-9_\.- ]/} ]] && \
