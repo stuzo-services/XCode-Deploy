@@ -71,6 +71,10 @@ inputs:
   retention-days:
     description: 'Period for artifacts storage. Artifacts will be kept during this time, in days'
     required: true
+  keychain_name:
+    description: 'Name for Keychain that will be used'
+    required: false
+    default: "git_actions_build_keychain"
 
 runs: 
   using: 'composite'
@@ -138,6 +142,7 @@ runs:
     - name: Import Certificates
       uses: apple-actions/import-codesign-certs@v2
       with:
+        keychain: ${{ inputs.keychain_name }}
         p12-file-base64: ${{ inputs.distribution-certificate-p12 }}
         p12-password: ${{ inputs.distribution-certificate-password }}
     - name: Install App Store Profile
@@ -207,7 +212,11 @@ runs:
         echo "[XCode-Deploy]: Uploading archive using altool..."
         xcrun altool --upload-app -f ${{ github.workspace }}/${{ env.PROJECT_NAME }}.ipa -t iOS \
         --apiIssuer ${{ inputs.auth-key-issuer-id }} --apiKey ${{ inputs.auth-key-id }}
-    - name: Cleanup 
+    - name: Delete keychain
+        if: always() # Always run this step to ensure the keychain is properly disposed of
+        run: |
+          security delete-keychain "${{ env.keychain_name }}".keychain
+    - name: Cleanup
       shell: bash
       run: |
         echo "[XCode-Deploy]: Removing private_keys folder..."
