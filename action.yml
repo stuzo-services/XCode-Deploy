@@ -214,6 +214,7 @@ runs:
         --apiIssuer ${{ inputs.auth-key-issuer-id }} --apiKey ${{ inputs.auth-key-id }}
     - name: Delete keychain
       if: always() # Always run this step to ensure the keychain is properly disposed of
+      shell: bash
       run: |
         security delete-keychain "${{ env.keychain_name }}".keychain
     - name: Cleanup
