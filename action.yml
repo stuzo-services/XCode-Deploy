@@ -166,6 +166,11 @@ runs:
       shell: bash
       run: |
         ls ~/Library/MobileDevice/Provisioning\ Profiles
+        
+    - name: Set Locate
+      shell: bash
+      run: |
+        export LC_CTYPE=en_US.UTF-8
     - name: Build and Archive
       uses: sersoft-gmbh/xcodebuild-action@v3.1.0
       with:
