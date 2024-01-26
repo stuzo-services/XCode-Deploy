@@ -213,9 +213,9 @@ runs:
         xcrun altool --upload-app -f ${{ github.workspace }}/${{ env.PROJECT_NAME }}.ipa -t iOS \
         --apiIssuer ${{ inputs.auth-key-issuer-id }} --apiKey ${{ inputs.auth-key-id }}
     - name: Delete keychain
-        if: always() # Always run this step to ensure the keychain is properly disposed of
-        run: |
-          security delete-keychain "${{ env.keychain_name }}".keychain
+      if: always() # Always run this step to ensure the keychain is properly disposed of
+      run: |
+        security delete-keychain "${{ env.keychain_name }}".keychain
     - name: Cleanup
       shell: bash
       run: |
