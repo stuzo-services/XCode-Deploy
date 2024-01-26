@@ -171,6 +171,7 @@ runs:
       shell: bash
       run: |
         export LC_CTYPE=en_US.UTF-8
+        brew install xcbeautify
     - name: Build and Archive
       uses: sersoft-gmbh/xcodebuild-action@v3.1.0
       with:
@@ -184,7 +185,7 @@ runs:
         destination: generic/platform=iOS
         configuration: ${{ inputs.configuration }}
         output-formatter: |
-          xcpretty
+          xcbeautify
     - name: Get App Store Connect API Key
       uses: timheuer/base64-to-file@v1.2.4
       with:
