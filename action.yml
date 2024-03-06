@@ -75,6 +75,10 @@ inputs:
     description: 'Name for Keychain that will be used'
     required: false
     default: "git_actions_build_keychain"
+  platform:
+    description: 'Platform which will be used for build'
+    required: false
+    default: "iOS Simulator,OS=17.2,name=iPhone 15"
 
 runs: 
   using: 'composite'
@@ -211,9 +215,11 @@ runs:
         echo "[XCode-Deploy]: Exporting archive using xcodebuild..."
         xcodebuild -exportArchive -verbose \
         -sdk iphoneos \
+        -destination 'platform=${{ inputs.platform }}'
         -archivePath ${{ github.workspace }}/${{ env.PROJECT_NAME }}.xcarchive  \
         -exportOptionsPlist ${{ github.workspace }}/${{ inputs.path-to-export-options }} \
-        -exportPath ${{ github.workspace }} \          -authenticationKeyIssuerID ${{ inputs.auth-key-issuer-id }} \
+        -exportPath ${{ github.workspace }} \
+        -authenticationKeyIssuerID ${{ inputs.auth-key-issuer-id }} \
         -authenticationKeyID ${{ inputs.auth-key-id }} \
         -authenticationKeyPath ${{ github.workspace }}/private_keys/AuthKey_${{ inputs.auth-key-id }}.p8 \
     - name: List generated files
