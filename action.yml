@@ -199,7 +199,7 @@ runs:
         build-settings: >
           -archivePath ${{ env.PROJECT_NAME }}.xcarchive
         derived-data-path: build/derivedData
-        destination: generic/platform=${{ inputs.platform }}
+        destination: platform=${{ inputs.platform }}
         configuration: ${{ inputs.configuration }}
         output-formatter: |
           xcbeautify
