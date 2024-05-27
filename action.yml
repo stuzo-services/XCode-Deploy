@@ -248,6 +248,7 @@ runs:
       run: |
         security delete-keychain "${{ env.keychain_name }}".keychain
     - name: Cleanup
+      if: always() # Always run this step to ensure the keychain is properly disposed of
       shell: bash
       run: |
         echo "[XCode-Deploy]: Removing private_keys folder..."
